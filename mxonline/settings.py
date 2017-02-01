@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'courses',
     'operation',
     'organization',
+    'registration',
     'xadmin',
     'crispy_forms',
     #'reversion',
@@ -87,8 +88,8 @@ WSGI_APPLICATION = 'mxonline.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'dongxiaoyi',
-        'USER': 'dongxiaoyi',
+        'NAME': 'mxonline',
+        'USER': 'dongxy',
         'PASSWORD': 'sk927312*',
         'HOST': 'localhost',
         'PORT': '3306',
