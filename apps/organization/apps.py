@@ -1,5 +1,6 @@
+#_*_encoding:utf-8_*_
 from django.apps import AppConfig
 
-
-class OganizationConfig(AppConfig):
-    name = 'oganization'
+class OrganizationConfig(AppConfig):
+    name = 'organization'
+    verbose_name = u'机构管理'

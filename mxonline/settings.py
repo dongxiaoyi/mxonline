@@ -41,13 +41,16 @@ INSTALLED_APPS = [
     'courses',
     'operation',
     'organization',
-    'registration',
+    #'registration',
     'xadmin',
     'crispy_forms',
     #'reversion',
 ]
+#AUTHENTICATION_BACKENDS = (
+#    'users.views.CustomBackend',
+#)
 #CRISPY_TEMPLATE_PACK = 'bootstrap'
-AUTH_USER_MODEL = 'users.UserProfile'
+#AUTH_USER_MODEL = 'users.UserProfile'
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',

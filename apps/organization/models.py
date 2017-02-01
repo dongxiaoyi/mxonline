@@ -27,6 +27,8 @@ class CourseOrg(models.Model):
     class Meta:
         verbose_name = u'课程机构'
         verbose_name_plural = verbose_name
+    def __unicode__(self):
+        return self.name
 
 class Teacher(models.Model):
     org = models.ForeignKey(CourseOrg,verbose_name=u'所属机构')
@@ -42,3 +44,6 @@ class Teacher(models.Model):
     class Meta:
         verbose_name = u'教师'
         verbose_name_plural = verbose_name
+
+    def __unicode__(self):
+        return self.name

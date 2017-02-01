@@ -1,3 +1,4 @@
+#_*_encoding:utf-8_*_
 import copy
 
 from crispy_forms.utils import TEMPLATE_PACK
