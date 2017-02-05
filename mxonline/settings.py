@@ -26,7 +26,9 @@ SECRET_KEY = 'otvrrj#m!&b_m^r_t&b^7@f9w2dkp*b(avp86k)@a=(3p06yx3'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+AUTHENTICATION_BACKENDS = (
+    'users.views.CustomBackend',
+)
 
 # Application definition
 
@@ -44,6 +46,7 @@ INSTALLED_APPS = [
     #'registration',
     'xadmin',
     'crispy_forms',
+    'captcha',
     #'reversion',
 ]
 #AUTHENTICATION_BACKENDS = (
@@ -137,6 +140,14 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR,'static'),
 ]
+
+EMAIL_HOST = "smtp.qq.com"
+EMAIL_PORT = 587
+EMAIL_HOST_USER = "870428371@qq.com"
+EMAIL_HOST_PASSWORD = "ibfnmlrdedzibdfb"
+EMAIL_USE_TLS = False
+EMAIL_FROM = "870428371@qq.com"
+
 
 LOGGING = {
     'version':1,
