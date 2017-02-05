@@ -2,9 +2,9 @@
 from datetime import datetime
 
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import User
 
-from users.models import User
+from users.models import MyUser
 from courses.models import Course
 
 class UserAsk(models.Model):
