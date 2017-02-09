@@ -140,13 +140,13 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR,'static'),
 ]
-
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = "smtp.qq.com"
 EMAIL_PORT = 587
 EMAIL_HOST_USER = "870428371@qq.com"
 EMAIL_HOST_PASSWORD = "ibfnmlrdedzibdfb"
-EMAIL_USE_TLS = False
-EMAIL_FROM = "870428371@qq.com"
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = "dongxy <870428371@qq.com>"
 
 
 LOGGING = {

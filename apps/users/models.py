@@ -1,7 +1,6 @@
 #_*_encoding:utf-8_*_
 import datetime
 from django.db import models
-from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.models import User
 from django.contrib.auth.admin import UserAdmin
 import datetime
