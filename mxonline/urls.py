@@ -26,7 +26,7 @@ from mxonline.settings import MEDIA_ROOT
 
 urlpatterns = [
     url(r'^xadmin/', xadmin.site.urls),
-    url('^index/$', TemplateView.as_view(template_name="index.html"),name="index"),
+    url('^$', TemplateView.as_view(template_name="index.html"),name="index"),
     url('^login/$', LoginView.as_view(), name="login"),
     url('^register/$', RegisterView.as_view(), name="register"),
     url(r'^captcha/',include('captcha.urls')),
