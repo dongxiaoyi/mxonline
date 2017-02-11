@@ -2,6 +2,33 @@
 {% block title %}
 课程机构列表 - 慕学在线网
 {% endblock %}
+{% block custom_js %}
+    <script>
+    $(function () {
+        $('#jsStayBtn').on(function () {
+            $.ajax({
+                cache:false,
+                type:'POST',
+                url:'{% url 'org:add_ask' %}',
+                data:$('#jsStayForm').serialize(),
+                async:true,
+                success:function (data) {
+                    console.log(data)
+                    alert(data)
+                    if(data.status == 'success'){
+                        $('#jsStayForm')[0].reset();
+                        alert('提交成功')
+                    }else if(data.status == 'fail'){
+                        $('#jsCompanyTips').html(data.msg)
+                    }
+                }
+            });
+            return false;
+        });
+        return false;
+    });
+    </script>
+{% endblock %}
 {% block custom_bread %}
     <section>
         <div class="wp">
@@ -134,6 +161,7 @@
                 </div>
                 <p class="error company-tips" id="jsCompanyTips"></p>
 				<input class="btn" type="text" id="jsStayBtn" value="立即咨询 >" />
+                {% csrf_token %}
             </form>
 		</div>
 
