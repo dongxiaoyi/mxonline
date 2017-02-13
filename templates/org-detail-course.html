@@ -1,0 +1,54 @@
+{% extends 'org_base.html' %}
+{% block title %}机构课程列表页{% endblock %}
+{% block page_path %}机构课程{% endblock %}
+
+{% block right_form %}
+<div class="right companycenter layout" >
+{% load staticfiles %}
+		<div class="head">
+			<h1>机构课程</h1>
+		</div>
+		<div class="brief group_list">
+{% for course in all_courses %}
+                <div class="module1_5 box">
+                    <a class="comp-img-box" href="course-detail.html">
+
+                        <img width="214" height="195" src="{{ MEDIA_URL }}{{ course.image }}"/>
+                    </a>
+                    <div class="des">
+                        <a href="course-detail.html"><h2>{{ course.name }}</h2></a>
+                        <span class="fl">课时：<i class="key">{{ course.learn_times }}</i></span>
+                        <span class="fr">学习人数：{{ course.students }}</span>
+                    </div>
+                    <div class="bottom">
+                        <span class="fl">{{ course.course_org.name }}</span>
+                         <span class="star fr  notlogin
+                            " data-favid="13" data-fav-type="4">
+                            {{ course.fav_num }}
+                        </span>
+                    </div>
+                </div>
+{% endfor %}
+        </div>
+			<div class="pageturn">
+                <ul class="pagelist">
+                    <li class="active"><a href="?page=1">1</a></li>
+                </ul>
+            </div>
+	</div>
+
+
+</section>
+<!--sidebar start-->
+<section>
+    <ul class="sidebar">
+        <li class="qq">
+            <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2023525077&site=qq&menu=yes"></a>
+        </li>
+        <li class="totop"></li>
+    </ul>
+</section>
+<!--sidebar end-->
+<!--header start-->
+</div>
+{% endblock %}
