@@ -31,7 +31,7 @@ class CourseComments(models.Model):
         verbose_name_plural = verbose_name
 
     def __unicode__(self):
-        return self.user + u'的评论'
+        return self.user.username + u'的评论'
 
 
 class UserFavorite(models.Model):

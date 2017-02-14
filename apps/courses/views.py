@@ -6,10 +6,11 @@ from django.contrib.auth.models import User
 from django.db.models import Q
 from django.views.generic.base import View
 from django.contrib.auth.hashers import make_password
+from django.http import HttpResponse
 from pure_pagination import Paginator, EmptyPage, PageNotAnInteger
-from .models import Course
+from .models import Course,CourseResource
 from django.shortcuts import render_to_response
-from operation.models import UserFavorite
+from operation.models import UserFavorite,CourseComments
 # Create your views here.
 
 
@@ -69,3 +70,62 @@ class CourseDetailView(View):
             'has_fav_course':has_fav_course,
             'has_fav_org':has_fav_org,
         })
+
+
+class CourseInfoView(View):
+    #课程章节信息
+    def get(self,request,course_id):
+        course = Course.objects.get(id=int(course_id))
+        all_resourses = CourseResource.objects.filter(course=course)
+        get_tag = course.tag
+        if get_tag:
+            relate_courses = Course.objects.filter(tag=get_tag)[:5]
+        else:
+            relate_courses = []
+        return render(request,'course-video.html',{
+            'course':course,
+            'all_resourses':all_resourses,
+            'relate_courses':relate_courses,
+        })
+
+
+class CommentsView(View):
+    #课程评论
+    def get(self,request,course_id):
+        course = Course.objects.get(id=int(course_id))
+        all_resourses = CourseResource.objects.filter(course=course)
+        all_comments = CourseComments.objects.filter(course=course)
+        get_tag = course.tag
+        if get_tag:
+            relate_courses = Course.objects.filter(tag=get_tag)[:5]
+        else:
+            relate_courses = []
+        return render(request,'course-comment.html',{
+            'course':course,
+            'all_resourses':all_resourses,
+            'relate_courses':relate_courses,
+            'all_comments':all_comments,
+        })
+
+
+class AddCommentsView(View):
+    # 用户添加评论
+    def post(self, request):
+        if not request.user.is_authenticated():
+            return HttpResponse('{"status":"fail","msg":"用户未登录"}', content_type='application/json')
+
+        course_id = request.POST.get('course_id', 0)
+        comments = request.POST.get('comments', '')
+        if course_id > 0 and comments:
+            course_comment = CourseComments()
+            course = Course.objects.get(id=(course_id))
+            course_comment.course = course
+            course_comment.comments = comments
+            course_comment.user = request.user
+            course_comment.save()
+            return HttpResponse('{"status":"success","msg":"添加成功"}', content_type='application/json')
+        else:
+            return HttpResponse('{"status":"fail","msg":"添加失败"}', content_type='application/json')
+
+
+
