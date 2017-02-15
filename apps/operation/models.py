@@ -63,6 +63,7 @@ class UserMessage(models.Model):
 class UserCourse(models.Model):
     user = models.ForeignKey(User, verbose_name=u"用户")
     course = models.ForeignKey(Course, verbose_name=u"课程")
+    url = models.CharField(max_length=200,default='',verbose_name=u'视频链接')
     add_time = models.DateTimeField(default=datetime.now, verbose_name=u"添加时间")
 
     class Meta:

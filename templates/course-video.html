@@ -69,7 +69,7 @@
                         <ul class="video">
     {% for video in lesson.get_lesson_video %}
                             <li>
-                                <a target="_blank" href='/video/3662' class="J-media-item studyvideo">{{ video.name }}({{ video.learn_times }}分钟)
+                                <a target="_blank" href='{% url 'course:video_play' video.id %}' class="J-media-item studyvideo">{{ video.name }}({{ video.learn_times }}分钟)
                                     <i class="study-state"></i>
                                 </a>
                             </li>
@@ -126,11 +126,11 @@
                             <div class="cp-tab-pannel js-comp-tab-pannel" data-pannel="course" style="display: block">
                                 <!-- img 200 x 112 -->
                                 <ul class="other-list">
-{% for relate_course in relate_courses %}
+{% for relate_user_course in relate_user_courses %}
                                     <li class="curr">
-                                        <a href="course-detail.html" target="_blank">
-                                            <img src="{{ MEDIA_URL }}{{ relate_course.image }}" alt="django与vuejs实战项目2">
-                                            <span class="name autowrap">{{ relate_course }}</span>
+                                        <a href="{% url 'course:course_detail' relate_user_course.id %}" target="_blank">
+                                            <img src="{{ MEDIA_URL }}{{ relate_user_course.image }}" alt="django与vuejs实战项目2">
+                                            <span class="name autowrap">{{ relate_user_course }}</span>
                                         </a>
                                     </li>
 {% endfor %}
