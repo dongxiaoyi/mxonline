@@ -4,6 +4,7 @@ from django.views.generic.base import View
 from models import CourseOrg,CityDict,Teacher
 from django.shortcuts import render_to_response
 from .forms import UserAskForm
+from django.db.models import Q
 from pure_pagination import Paginator, EmptyPage, PageNotAnInteger
 from django.http import HttpResponse
 from courses.models import Course
@@ -16,6 +17,11 @@ class OrgView(View):
     #课程机构列表功能
     def get(self,request):
         all_orgs = CourseOrg.objects.all()
+        current_nav = 'org'
+        search_keywords = request.GET.get('keywords', '')
+        if search_keywords:
+            all_orgs = all_orgs.filter(
+                Q(name__icontains=search_keywords) | Q(desc__icontains=search_keywords))
         #热门排序
         hot_orgs = all_orgs.order_by('-click_num')[:3]
         all_citys = CityDict.objects.all()
@@ -54,6 +60,7 @@ class OrgView(View):
             'category':category,
             'hot_orgs':hot_orgs,
             'sort':sort,
+            'current_nav':current_nav,
         })
 
 
@@ -174,6 +181,10 @@ class TeacherListView(View):
     '''
     def get(self,request):
         all_teachers = Teacher.objects.all()
+        current_nav = 'teacher'
+        search_keywords = request.GET.get('keywords', '')
+        if search_keywords:
+            all_teachers = all_teachers.filter(name__icontains=search_keywords)
         #排序
         sort = request.GET.get('sort', '')
         if sort:
@@ -195,6 +206,7 @@ class TeacherListView(View):
             'all_teachers':teachers,
             'sorted_teachers':sorted_teachers,
             'sort':sort,
+            'current_nav':current_nav,
         })
 
 
