@@ -17,6 +17,7 @@
     <script src="{% static 'js/jquery-migrate-1.2.1.min.js' %}" type="text/javascript"></script>
 </head>
 <body>
+
 <section class="headerwrap headerwrap2">
     <header>
 		<div  class="header2 header">
@@ -28,19 +29,19 @@
                         
                         <div class="personal">
                             <dl class="user fr">
-                                <dd>bobby<img class="down fr" src="{% static 'images/top_down.png' %}"/></dd>
-                                <dt><img width="20" height="20" src="../media/image/2016/12/default_big_14.png"/></dt>
+                                <dd>{{ user.username }}<img class="down fr" src=""/></dd>
+                                <dt><img width="20" height="20" src="{{ MEDIA_URL }}{{ user.image }}"/></dt>
                             </dl>
                             <div class="userdetail">
                             	<dl>
-	                                <dt><img width="80" height="80" src="../media/image/2016/12/default_big_14.png"/></dt>
+	                                <dt><img width="80" height="80" src="{{ MEDIA_URL }}{{ user.image }}"/></dt>
 	                                <dd>
-	                                    <h2>django</h2>
-	                                    <p>bobby</p>
+	                                    <h2>{{ user.nick_name }}</h2>
+	                                    <p>{{ user.username }}</p>
 	                                </dd>
                                 </dl>
                                 <div class="btn">
-	                                <a class="personcenter fl" href="usercenter-info.html">进入个人中心</a>
+	                                <a class="personcenter fl" href="{% url 'users:user_info' %}">进入个人中心</a>
 	                                <a class="fr" href="/logout/">退出</a>
                                 </div>
                             </div>
@@ -56,7 +57,7 @@
     <div class="middle">
         <div class="wp">
             <a href="index.html"><img class="fl" src="{% static 'images/logo2.png' %}"/></a>
-            <h1>我的慕学网</h1>
+            <h1>个人后台管理</h1>
         </div>
     </div>
 			</div>
@@ -66,7 +67,7 @@
 
 
 <!--crumbs start-->
-
+{% block custom_bread %}
     <section>
         <div class="wp">
             <ul  class="crumbs">
@@ -76,7 +77,7 @@
             </ul>
         </div>
     </section>
-
+{% endblock %}
 <section>
 	<div class="wp list personal_list">
 	<div class="left">
@@ -92,7 +93,7 @@
         </ul>
 	</div>
 
-    
+{% block right-content %}
     <div class="right">
 		<div class="personal_des ">
 			<div class="head" style="border:1px solid #eaeaea;">
@@ -151,7 +152,7 @@
 			</div>
 		</div>
 	</div>
-
+{% endblock %}
 
 	</div>
 </section>
