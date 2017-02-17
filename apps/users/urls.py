@@ -1,8 +1,8 @@
 # _*_encoding:utf-8_*_
 from django.conf.urls import url
 from django.views.generic import TemplateView
-from .views import UserInfoView,ImageUploadView,UpdatePwdView,SendEmailCodeView,UpdateEmailView,MyCourseView
-
+from .views import UserInfoView,ImageUploadView,UpdatePwdView,SendEmailCodeView,UpdateEmailView,MyCourseView,MyFavOrgView
+from .views import MyFavTeacherView
 urlpatterns = [
     #用户信息
     url(r'^info/$', UserInfoView.as_view(), name="user_info"),
@@ -21,4 +21,10 @@ urlpatterns = [
 
     # 我的课程
     url(r'^mycourse/$', MyCourseView.as_view(), name="mycourse"),
+
+    # 我收藏的课程机构
+    url(r'^myfav-org/$', MyFavOrgView.as_view(), name="myfav-org"),
+
+    # 我收藏的讲师
+    url(r'^myfav-teacher/$', MyFavTeacherView.as_view(), name="myfav-teacher"),
 ]
