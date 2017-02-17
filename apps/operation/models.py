@@ -71,4 +71,7 @@ class UserCourse(models.Model):
         verbose_name_plural = verbose_name
 
     def __unicode__(self):
+        return self.user.username + u'的课程'
+
+    def __str__(self):
         return self.user + u'的课程'

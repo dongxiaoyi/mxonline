@@ -11,6 +11,7 @@ from django.contrib.auth.hashers import make_password
 from utils.email_send import send_register_email
 from models import EmaliVerifyRecord
 from .utils.mixin_utils import LoginRequiredMixin
+from operation.models import UserCourse
 import json
 # Create your views here.
 class CustomBackend(ModelBackend):
@@ -207,3 +208,13 @@ class UpdateEmailView(LoginRequiredMixin,View):
             return HttpResponse('{"status":"success"}', content_type='application/json')
         else:
             return HttpResponse('{"email":"验证码出错"}', content_type='application/json')
+
+class MyCourseView(LoginRequiredMixin,View):
+    '''
+    我的课程
+    '''
+    def get(self,request):
+        user_courses = UserCourse.objects.filter(user=request.user)
+        return render(request,'usercenter-mycourse.html',{
+            'user_courses':user_courses
+        })
