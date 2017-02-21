@@ -1,6 +1,6 @@
 # mxonline
 ## Python版本：Python2.7
-## Django版本：django1.9
+## Django版本：django1.9.6
 ## xadmin版本：xadmin0.6.1。
 ## pip install django-simple-captcha==0.4.6 用于验证码
 ## pip install django-pure-pagination 用户分页
